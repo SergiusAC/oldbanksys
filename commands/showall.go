@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"oldbanksys/common"
-	registry2 "oldbanksys/domain/registry"
+	"oldbanksys/domain/registry"
 )
 
 func ShowAllAccounts() error {
@@ -15,14 +15,14 @@ func ShowAllAccounts() error {
 		return err
 	}
 
-	registry := &registry2.AccountRegistry{}
-	err = json.Unmarshal(data, registry)
+	reg := &registry.AccountRegistry{}
+	err = json.Unmarshal(data, reg)
 
 	if err != nil {
 		return err
 	}
 
-	for _, account := range registry.Accounts {
+	for _, account := range reg.Accounts {
 		fmt.Println("=========================================================")
 		account.PrintToConsole()
 		fmt.Println()

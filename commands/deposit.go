@@ -2,16 +2,16 @@ package commands
 
 import (
 	"fmt"
-	registry2 "oldbanksys/domain/registry"
+	"oldbanksys/domain/registry"
 )
 
 func DepositAccount(accountId string, depositAmount float64) error {
-	registry, err := registry2.GetRegistry()
+	reg, err := registry.GetRegistry()
 	if err != nil {
 		return err
 	}
 
-	account, _ := registry.FindAccountById(accountId)
+	account, _ := reg.FindAccountById(accountId)
 	if account == nil {
 		return fmt.Errorf("account with ID %s not found", accountId)
 	}
@@ -21,7 +21,7 @@ func DepositAccount(accountId string, depositAmount float64) error {
 		return err
 	}
 
-	err = registry.WriteToLocalDbFile()
+	err = reg.WriteToLocalDbFile()
 	if err != nil {
 		return err
 	}

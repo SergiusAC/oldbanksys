@@ -2,16 +2,16 @@ package commands
 
 import (
 	"fmt"
-	registry2 "oldbanksys/domain/registry"
+	"oldbanksys/domain/registry"
 )
 
 func WithdrawAccount(accountId string, withdrawAmount float64) error {
-	registry, err := registry2.GetRegistry()
+	reg, err := registry.GetRegistry()
 	if err != nil {
 		return err
 	}
 
-	acc, _ := registry.FindAccountById(accountId)
+	acc, _ := reg.FindAccountById(accountId)
 	if acc == nil {
 		return fmt.Errorf("account with ID %s not found", accountId)
 	}

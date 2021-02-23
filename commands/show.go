@@ -2,16 +2,16 @@ package commands
 
 import (
 	"fmt"
-	registry2 "oldbanksys/domain/registry"
+	"oldbanksys/domain/registry"
 )
 
 func ShowAccount(accountId string) error {
-	registry, err := registry2.GetRegistry()
+	reg, err := registry.GetRegistry()
 	if err != nil {
 		return err
 	}
 
-	acc, _ := registry.FindAccountById(accountId)
+	acc, _ := reg.FindAccountById(accountId)
 	fmt.Println("=========================================================")
 	acc.PrintToConsole()
 

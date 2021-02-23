@@ -2,19 +2,19 @@ package commands
 
 import (
 	"fmt"
-	registry2 "oldbanksys/domain/registry"
+	"oldbanksys/domain/registry"
 )
 
 func DeleteAccount(accountId string) error {
-	registry, err := registry2.GetRegistry()
+	reg, err := registry.GetRegistry()
 	if err != nil {
 		return err
 	}
 
-	deleted := registry.DeleteAccount(accountId)
+	deleted := reg.DeleteAccount(accountId)
 
 	if deleted {
-		err = registry.WriteToLocalDbFile()
+		err = reg.WriteToLocalDbFile()
 		if err != nil {
 			return err
 		}
